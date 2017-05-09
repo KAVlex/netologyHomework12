@@ -8,7 +8,14 @@ angular.module('myApp.view1', ['ngRoute'])
             controller: 'View1Ctrl'
         });
     }])
-
+    .filter('typeFilter', () => {
+        return function(items, type){
+            if (type && type != ''){
+                return items.filter(item => type.every(t => item.type.indexOf(t) >= 0));
+            }
+            return items;
+        };
+    })
     .controller('View1Ctrl', function ($scope) {
         $scope.pokemons = [{
             "abilities": [
@@ -122,4 +129,16 @@ angular.module('myApp.view1', ['ngRoute'])
 
         $scope.myOrderProperty = 'id';
 
+        $scope.alert = (message) => {
+            window.alert(message);
+        };
+
+        $scope.getClass = (types) => {
+            // синим - если водный тип; красным - если огонь; зеленым - если трава (ng-class)
+            const classes = {water: 'blue', fire: 'red', grass: 'green'};
+            for (let t in classes) {
+                if (types.indexOf(t) >= 0)
+                    return classes[t];
+            }
+        }
     });

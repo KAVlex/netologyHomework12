@@ -23,3 +23,15 @@
   content: "|";
   padding-right: 0.3em;
 }
+
+.pokemon > h1.blue{
+  color: blue;
+}
+
+.pokemon > h1.green{
+  color: green;
+}
+
+.pokemon > h1.red{
+  color: red;
+}
